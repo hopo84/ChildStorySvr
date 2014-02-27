@@ -44,7 +44,9 @@ class Story extends CI_Controller  {
 			$item = array();
 			$item['id'] = intval($story->id);
 			$item['name'] = htmlspecialchars($story->story_name);
-			$item['content'] = htmlspecialchars($story->story_content);
+            $content = htmlspecialchars($story->story_content);
+            $content = nl2br(str_replace(" ", "&nbsp;", $content));
+			$item['content'] = $content;
 			$data[] = $item;
 		}
 		
