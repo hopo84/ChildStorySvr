@@ -37,6 +37,7 @@ class Story extends CI_Controller  {
 		$where = array('id > '=>$last_story_id);
 		$storys = $this->Storys_m->get_storys(false, $where, 0, 50);
 		
+		$ret = array();
 		$data = array();
 		foreach ($storys as $story)
 		{
@@ -47,7 +48,9 @@ class Story extends CI_Controller  {
 			$data[] = $item;
 		}
 		
-		exit(json_encode($data));
+		$ret['result'] = !empty($data) ? true : false;
+		$ret['data'] = $data;
+		exit(json_encode($ret));
 	}
 	
 	/**
